@@ -4,6 +4,11 @@ const { port, host, db } = require("./configuration");
 const { connectDb } = require("./helpers/db");
 
 const app = express();
+mongoose.connect('mongodb://root:example@api_db:27017/api?authSource=admin', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
 const kittySchema = new mongoose.Schema({
   name: String
 });
@@ -14,7 +19,7 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/data", (req, res) => {
-  res.send("Your request: Data 12345");
+  res.send("Your request: Data");
 });
 
 const startServer = () => {
